@@ -11,5 +11,10 @@ public class E5_Java_Output_Formatting {
 		String s = sc.nextLine();
 		System.out.print("Enter a integer: ");
 		int n = sc.nextInt();
+		
+		if(s.length()<=10) {
+			System.out.print(s);
+			
+		}
 	}
 }
