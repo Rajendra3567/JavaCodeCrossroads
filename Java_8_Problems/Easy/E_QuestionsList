@@ -1,0 +1,23 @@
+E1- WAP to find even numbers from the list
+E2- WAP to convert list of Strings to UpperCase
+E3- WAP to find the max value from a list of integers.
+E4- WAP to group strings by their length using the Stream API
+E5- WAP to check if a list contain any word starting with 'A' using the Stream API
+E6- WAP to find duplicate elements in a list using the stream api
+E7- WAP to remove Null values from a List using the Stream API.
+E8- WAP to flatten a list of lists using the stream api
+E9- WAP to partitions number into even and odd using the stream api.
+E10- How to find the frequency of elements in a list using Java 8 streams
+E11- WAP to merge two list into a single list using the java 8 Stream API
+E12- WAP to convert list of Integers to their squares using the java 8 stream API.
+E13- WAP to remove duplicate words from a list using Java 8 Stream API
+E14- WAP to find the first element in a list using java stream API
+E15 - WAP to Sum of all Elements in List using java 8 Stream API
+E16 - WAP to find elements greater than 10 in a list using java 8 stream API
+E17 - WAP to find the length of the longest string in a list using java Stream api
+E18 - WAP to find the second highest element in a list using the Java Stream Api
+E19 - WAP to to collect odd numbers into Set using the java 8 Stream api
+E20 - WAP to check if all elements in a list are positive using the java 8 stream API
+
+
+
