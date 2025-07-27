@@ -1,11 +1,10 @@
-package Medium;
+package Miscellanous;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Java8CommonProgrammingQA {
+public class M2_Java8SqlQueriesQuesEmployee {
     public static void main(String[] args) {
 
         List<Student> studentList = Stream.of(
@@ -22,45 +21,65 @@ public class Java8CommonProgrammingQA {
         ).collect(Collectors.toList());
 
 //        find the list of students whose rank is between 50 to 100
-        List<Student> resultList = studentList.stream().filter(stud -> stud.getRank() > 50 && stud.getRank() <100)
+        List<Student> resultList = studentList.stream().filter(stud -> stud.getRank() > 50 && stud.getRank() < 100)
                 .collect(Collectors.toList());
         System.out.println(resultList);
 
 //        Find the student who stays in Karnataka and sort them by their names
-        List<Student>studentByCity =
+        List<Student> studentByCity =
                 studentList.stream().filter(
-                student ->  student.getCity().equals("Karnataka")
-        ).sorted(Comparator.comparing(Student::getName, Comparator.reverseOrder())) .collect(Collectors.toList());
+                        student -> student.getCity().equals("Karnataka")
+                ).sorted(Comparator.comparing(Student::getName, Comparator.reverseOrder())).collect(Collectors.toList());
         System.out.println(studentByCity);
 
 //      find all the departments name
-       Set<String> deptList = studentList.stream()
-               .map(Student::getName).collect(Collectors.toSet());
-                System.out.println("Dept List : "+ deptList);
+        Set<String> deptList = studentList.stream()
+                .map(Student::getName).collect(Collectors.toSet());
+        System.out.println("Dept List : " + deptList);
 
-       //  find all the contact numbers
+        //  find all the contact numbers
         List<List<String>> contactList = studentList.stream().map(Student::getContacts).collect(Collectors.toList());
         System.out.println(contactList);
         List<String> flattenContactList = studentList.stream().flatMap(student -> student.getContacts().stream()).collect(Collectors.toList());
-        System.out.println("Flatten : "+ flattenContactList);
+        System.out.println("Flatten : " + flattenContactList);
 
 //     Group the student by Department Names
         Map<String, List<Student>> groupingList =
                 studentList.stream().collect(
-                Collectors.groupingBy(Student :: getDept)
-        );
+                        Collectors.groupingBy(Student::getDept)
+                );
         System.out.println(groupingList);
 
 //     Group the student by Department Names
-       Map<String, Long> groupingList1 =
+        Map<String, Long> studentMapCount =
                 studentList.stream().collect(
-                        Collectors.groupingBy(Student :: getDept, Collectors.counting())
+                        Collectors.groupingBy(Student::getDept, Collectors.counting())
                 );
-       System.out.println(groupingList1);
+        System.out.println(studentMapCount);
 
+//      find the maximum count of dept in above grouped student by dept names
 
+        Map.Entry<String, Long> studentMapCountSort = studentList.stream().collect(
+                        Collectors.groupingBy(Student::getDept, Collectors.counting()))
+                .entrySet().stream().max(Map.Entry.comparingByValue()).get();
+        System.out.println(studentMapCountSort);
 
+//     Find the average age of male and female student
+        Map<String, Double> avgStudentAge = studentList.stream().collect(
+                Collectors.groupingBy(Student::getGender, Collectors.averagingInt(Student::getAge)
+                ));
+        System.out.println("Average age of Students : " + avgStudentAge);
 
+//        find the highest rank in each department
+        Map<String, Optional<Student>> deptRankList = studentList.stream().collect(
+                Collectors.groupingBy(Student::getDept, Collectors.minBy(Comparator.comparing(Student::getRank))));
+        System.out.println(deptRankList);
+
+//  Find the student who has second rank
+    List<Student> secondHighest = studentList.stream()
+                                    .sorted(Comparator.comparing(Student::getRank))
+                                    .skip(1).findFirst().stream().collect(Collectors.toList());
+        System.out.println("Second Highest Rank student : " +secondHighest);
     }
 }
 
